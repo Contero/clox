@@ -17,4 +17,13 @@ Returns: offset of next instruction
 */
 int disassembleInstruction(Chunk*, int);
 
+
+/*
+prints the name of a simple instruction
+param: the name of the opcode
+param: the offset of the opcode
+returns: the offset of the next opcode
+*/
+int simpleInstruction(const char* name, int offset);
+
 #endif
