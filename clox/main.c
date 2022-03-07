@@ -1,22 +1,29 @@
 #include "common.h"
 #include "chunk.h"
 #include "debug.h"
+#include "vm.h"
 
 int main(int arhc, char* argv[])
 {
+	initVM();
 	Chunk chunk;
 	initChunk(&chunk);
+	//writeChunk(&chunk, OP_CONSTANT, 123);
+	writeConstant(&chunk, 1.2, 123);
+	writeConstant(&chunk, 3.4, 123);
 
-	int constant = addConstant(&chunk, 1.2);
-	writeChunk(&chunk, OP_CONSTANT, 12);
-	writeChunk(&chunk, constant, 12);
-	writeChunk(&chunk, OP_RETURN, 13);
-	writeChunk(&chunk, OP_RETURN, 13);
-	writeChunk(&chunk, OP_RETURN, 14);
-	writeChunk(&chunk, OP_RETURN, 14);
-	for (int i = 0; i < 270; i++)
-		writeConstant(&chunk, i,15);
-	disassembleChunk(&chunk, "Test chunk");
+	writeChunk(&chunk, OP_ADD, 123);
+
+	writeConstant(&chunk, 5.6, 123);
+
+	writeChunk(&chunk, OP_DIVIDE, 123);
+
+	writeChunk(&chunk, OP_NEGATE, 123);
+	writeChunk(&chunk, OP_RETURN, 123);
+	// disassembleChunk(&chunk, "Test chunk");
+	interpret(&chunk);
+
+	freeVM();
 	freeChunk(&chunk);
 
 	return 0;
