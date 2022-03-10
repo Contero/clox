@@ -35,7 +35,7 @@ void freeVM();
 Interprets a chunk of bytecode
 param: pointer to the chunk
 */
-InterpretResult interpret(Chunk* chunk);
+InterpretResult interpret(const char* source);
 
 /*
 Adds value to stack
